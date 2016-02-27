@@ -81,6 +81,7 @@ function StaticEngine(spider) {
       }
     }
 
+    var start = new Date();
     request(settings, function(err, response, body) {
 
       res.responseTime = new Date() - start;
