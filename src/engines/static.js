@@ -84,7 +84,7 @@ function StaticEngine(spider) {
     var start = new Date();
     request(settings, function(err, response, body) {
 
-      res.responseTime = new Date() - start;
+      response.responseTime = new Date() - start;
       // If an error occurred
       if (err) {
         if (err.message === 'ETIMEDOUT')
