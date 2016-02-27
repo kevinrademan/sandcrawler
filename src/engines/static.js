@@ -84,7 +84,7 @@ function StaticEngine(spider) {
     var start = new Date();
     request(settings, function(err, response, body) {
 
-      response.responseTime = new Date() - start;
+      
       // If an error occurred
       if (err) {
         if (err.message === 'ETIMEDOUT')
@@ -99,6 +99,7 @@ function StaticEngine(spider) {
       job.res.body = body;
       job.res.status = response.statusCode;
       job.res.headers = response.caseless.dict;
+      job.res.responseTime = new Date() - start;
 
       // Assessing some things
       var json = /json/.test(job.res.headers['content-type']);
