@@ -83,6 +83,7 @@ function StaticEngine(spider) {
 
     request(settings, function(err, response, body) {
 
+      res.responseTime = new Date() - start;
       // If an error occurred
       if (err) {
         if (err.message === 'ETIMEDOUT')
@@ -116,7 +117,7 @@ function StaticEngine(spider) {
 
         //-- 2) HTTP equivalent or meta charset
         if (!sourceEncoding && !json) {
-          var m = body.match(/<meta.*?charset=([^"']+)/);
+            var m = iconv.decode(new Buffer(body), 'utf-8').match(/<meta.*?charset=([^"']+)/);
           sourceEncoding = m && m[1];
         }
 
